@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="ui container">
+    {{>header}}
+    <h2><center>The covid 19 app <a style="color:Red">{{message}}</a></center></h2>
+   
+
+<div class="ui four column doubling stackable grid container">
+  <div class="column">
+    <div class="ui card">
+  <div class="content">
+    <div class="center aligned header">New Confirmed Cases</div>
+    <div class="center aligned description">
+      <h1>{{newCases}}</h1>
+    </div>
+  </div>
+ 
+</div>
+  </div>
+  <div class="column">
+     <div class="ui card">
+  <div class="content">
+    <div class="center aligned header">Total Confirmed Cases</div>
+    <div class="center aligned description">
+      <h1>{{totalCases}}</h1>
+    </div>
+  </div>
+ 
+</div>
+  </div>
+  <div class="column">
+    <div class="ui card">
+  <div class="content">
+    <div class="center aligned header">Total Deaths</div>
+    <div class="center aligned description">
+      <h1>{{totalDeaths}}</h1>
+    </div>
+  </div>
+ 
+</div>
+  </div>
+  <div class="column">
+    <div class="ui card">
+  <div class="content">
+    <div class="center aligned header">Total Recovered</div>
+    <div class="center aligned description">
+      <h1>{{totalRecovered}}</h1>
+    </div>
+  </div>
+ 
+</div>
+  </div>
+  <center>Last updated on: {{date}}</center>
+<h4 class="ui horizontal divider header">
+  <i class="tag icon"></i>
+  By country 30 days stats
+</h4>
+<form class="ui form">
+  <div class="field">
+    <label></label>
+    <input type="text" name="country" placeholder="Enter Country">
+    
+  </div>
+  <button class="ui button" type="submit">Search</button>
+</form>
+  <table class="ui celled table">
+  <thead>
+    <tr><th>Name</th>
+    <th>Age</th>
+    <th>Job</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td data-label="Name">James</td>
+      <td data-label="Age">24</td>
+      <td data-label="Job">Engineer</td>
+    </tr>
+    <tr>
+      <td data-label="Name">Jill</td>
+      <td data-label="Age">26</td>
+      <td data-label="Job">Engineer</td>
+    </tr>
+    <tr>
+      <td data-label="Name">Elyse</td>
+      <td data-label="Age">24</td>
+      <td data-label="Job">Designer</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+ {{>footer}}
+    </div>
+
+ 
+</body>
+</html>
