@@ -18,7 +18,7 @@ hbs.registerPartials(partialsPath);
 app.use(express.static(publicPath));
 
 app.get("/", (req, res) => {
-  covidStats(
+  covidStats.covidStats(
     (
       error,
       { newCases, totalCases, totalDeaths, totalRecovered, message, date }
@@ -42,6 +42,31 @@ app.get("/about", (req, res) => {
   res.render("about", {
     title: "About Page",
   });
+});
+
+app.get("/api", (req, res) => {
+  if (!req.query.country) {
+    return res.send({
+      Error: "Please provide an address",
+    });
+  }
+
+  covidStats.byCountry(
+    req.query.country,
+    (error, { confirmed, deaths, recovered, active, date }) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send({
+          confirmed: commaNumber(confirmed),
+          deaths: commaNumber(deaths),
+          recovered: commaNumber(recovered),
+          active: commaNumber(active),
+          date,
+        });
+      }
+    }
+  );
 });
 
 app.listen(3000, () => {

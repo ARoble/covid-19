@@ -20,4 +20,35 @@ const covidStats = (callback) => {
   });
 };
 
-module.exports = covidStats;
+// const allData = (callback) => {
+//   const url = "https://api.covid19api.com/countries";
+
+//   request({ url, json: true }, (error, data) => {
+//     callback(undefined, data);
+//   });
+// };
+
+const byCountry = (country, callback) => {
+  const url = "https://api.covid19api.com/total/country/" + country;
+
+  request({ url, json: true }, (error, data) => {
+    //console.log(data.body.message);
+    if (error) {
+      callback("error connecting to server", undefined);
+    } else if (data.body.message) {
+      callback(data.body, undefined);
+    } else {
+      callback(undefined, {
+        confirmed: data.body[data.body.length - 1].Confirmed,
+        deaths: data.body[data.body.length - 1].Deaths,
+        recovered: data.body[data.body.length - 1].Recovered,
+        active: data.body[data.body.length - 1].Active,
+        date: data.body[data.body.length - 1].Date,
+      }),
+        console.log(data.body[data.body.length - 1].Country);
+    }
+  });
+};
+
+module.exports.covidStats = covidStats;
+module.exports.byCountry = byCountry;
