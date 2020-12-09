@@ -1,8 +1,10 @@
 const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
+
 const commaNumber = require("comma-number");
 const covidStats = require("./utils/covidStats");
+const countryFlag = require("./utils/countryFlag");
 
 const app = express();
 
@@ -56,17 +58,28 @@ app.get("/api", (req, res) => {
     (error, { confirmed, deaths, recovered, active, date }) => {
       if (error) {
         res.send(error);
-      } else {
+      }
+
+      countryFlag((error, data) => {
         res.send({
+          data,
           confirmed: commaNumber(confirmed),
           deaths: commaNumber(deaths),
           recovered: commaNumber(recovered),
           active: commaNumber(active),
           date,
         });
-      }
+      });
     }
   );
+});
+
+app.use("/flag", (req, res) => {
+  countryFlag((error, data) => {
+    res.send({
+      data,
+    });
+  });
 });
 
 app.listen(3000, () => {
