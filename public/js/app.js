@@ -19,6 +19,7 @@ searchForm.addEventListener("submit", (event) => {
         document.querySelector("#searchConfirmed").textContent = data.confirmed;
         document.querySelector("#searchDeath").textContent = data.deaths;
         document.querySelector("#searchRecovered").textContent = data.recovered;
+        document.getElementById("flag").src = data.flag;
         console.log(data);
       }
     });

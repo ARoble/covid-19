@@ -60,14 +60,14 @@ app.get("/api", (req, res) => {
         res.send(error);
       }
 
-      countryFlag((error, data) => {
+      countryFlag(req.query.country, (error, data) => {
         res.send({
           data,
           confirmed: commaNumber(confirmed),
           deaths: commaNumber(deaths),
           recovered: commaNumber(recovered),
           active: commaNumber(active),
-          date,
+          flag: data,
         });
       });
     }
