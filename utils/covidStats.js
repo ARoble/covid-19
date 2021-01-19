@@ -38,6 +38,7 @@ const byCountry = (country, callback) => {
     } else if (data.body.message) {
       callback(data.body, undefined);
     } else {
+      console.log(data);
       callback(undefined, {
         confirmed: data.body[data.body.length - 1].Confirmed,
         deaths: data.body[data.body.length - 1].Deaths,

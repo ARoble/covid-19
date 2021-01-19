@@ -55,7 +55,7 @@ app.get("/api", (req, res) => {
 
   covidStats.byCountry(
     req.query.country,
-    (error, { confirmed, deaths, recovered, active, date }) => {
+    (error, { confirmed, deaths, recovered, active, date } = {}) => {
       if (error) {
         res.send(error);
       }
@@ -75,7 +75,7 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/flag", (req, res) => {
-  countryFlag((error, data) => {
+  countryFlag("dsds", (error, data) => {
     res.send({
       data,
     });
